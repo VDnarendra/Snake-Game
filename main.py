@@ -1,6 +1,8 @@
 from Objects import SnakeObj,Game
 import socket ,select, sys
 
+IP_ADD = '127.0.0.1'
+
 class GameClient(Game):
     """docstring for GameClient"""
     def __init__(self,server):
@@ -49,11 +51,11 @@ class Client(object):
     def __init__(self):
         super(Client, self).__init__()
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.IP_address = '127.0.0.1'
+        self.IP_address = IP_ADD
         self.Port = 12345
         self.server.connect((self.IP_address, self.Port))
         self.game = None
-        self.id=None
+        self.ID=None
 
     def start(self):
         msg = self.RECEIVE()

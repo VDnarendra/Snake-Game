@@ -1,3 +1,5 @@
+# sudo apt-get install python-pygame
+# Use python2 interpreter
 import pygame
 import math
 import time
@@ -177,7 +179,7 @@ class Game(object):
         self.gameDisplay.fill(self.colors['black'],(0,0,600,600))
         self.BackGround.move_and_draw_stars()
 
-        if hasattr(self, 'server') and hasattr(self.server,'ID'):
+        if hasattr(self, 'server') and hasattr(self.server,'ID') and self.server.ID !=None:
             ID = self.server.ID -1
             self.gameDisplay.fill(self.colors['black'],(600,(ID*100)+40,200,2))
 
@@ -265,6 +267,8 @@ class Game(object):
     def __del__(self):
         self.pygame.quit()
         print("Destructed the window")
+        if hasattr(self, 'server'):
+            self.server.__del__()
 
 def main():
     game = Game()

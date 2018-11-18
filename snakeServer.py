@@ -1,5 +1,5 @@
 from Objects import SnakeObj,Game
-import socket ,select, sys
+import socket ,select,os,sys,signal
 try:
     from _thread import *
 except :
@@ -62,13 +62,12 @@ class Server(object):
         super(Server, self).__init__()
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.IP_address = socket.gethostname()
         self.Port = 12345
         self.server.bind(('', self.Port))
         self.server.listen(4)
         self.list_of_clients = {}
         self.game = None
-        self.id=None
+        self.ID=None
 
     def clientthread(self, conn, addr):
         while len(self.list_of_clients)==4:
@@ -131,9 +130,9 @@ class Server(object):
             conn, addr = self.server.accept()
             start_new_thread(self.clientthread,(conn,addr))
 
-    def __del__(selfRECEIVE):
-
+    def __del__(self):
         self.server.close()
+        os.kill(os.getpid(),signal.SIGKILL)
 
 def main():
     server = Server()
