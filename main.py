@@ -1,4 +1,4 @@
-from Objects import SnakeObj,Game
+from Engine.Objects import SnakeObj,Game
 import socket ,select, sys
 
 IP_ADD = '127.0.0.1'
