@@ -266,7 +266,6 @@ class Game(object):
 
     def __del__(self):
         self.pygame.quit()
-        print("Destructed the window")
         if hasattr(self, 'server'):
             self.server.__del__()
 

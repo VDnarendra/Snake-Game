@@ -1,4 +1,4 @@
-from Objects import SnakeObj,Game
+from Engine.Objects import SnakeObj,Game
 import socket ,select,os,sys,signal
 try:
     from _thread import *
